@@ -168,6 +168,26 @@ You've got the Lotus executables ready to go, and you have access to a Lotus ful
 
 A lite-node is limited in what it can do and is designed to only perform message signing and transactional operations. Lite-nodes cannot seal data or query the chain directly. All chain requests go through the attached full-node. If for whatever reason, the full-node goes offline, any lite-nodes connected to it will also go offline.
 
+### Using `api.chain.love` instead
+
+{{< alert >}}
+Just as a reminder, `api.chain.love` is a Lotus full-node managed by Protocol Labs. It's ideal for use in this tutorial, but should not be used in a development or in a production environment.
+{{< /alert >}}
+
+1. To experiment with a lite-node without setting up your own full-node you can connect to `api.chain.love` first. In this case you can provide the secure websocket URI to `FULLNODE_API_INFO` like so:
+
+    ```shell with-output
+    FULLNODE_API_INFO=wss://api.chain.love lotus daemon --lite
+    ```
+
+    ```
+    ...
+    2021-06-16T02:00:08.390Z        INFO    markets loggers/loggers.go:56   module ready   {"module": "storage client"}
+    2021-06-16T02:00:08.392Z        INFO    markets loggers/loggers.go:56   module ready   {"module": "retrieval client"}
+    2021-06-16T02:00:18.190Z        INFO    basichost       basic/natmgr.go:91      DiscoverNAT error:no NAT found
+    ...
+    ```
+
 ### Access and permissions
 
 Setting up a Lotus lite-node without using an [API token from a full-node]({{< relref "../developers/api-access/" >}}) results in the lite-node having read-only access to the full-node. While read-only access should be fine for most use-cases, there are situations where you need write access to the full-node.
